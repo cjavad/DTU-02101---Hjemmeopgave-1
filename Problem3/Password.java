@@ -6,7 +6,6 @@ public class Password {
     
     public static boolean checkPWD(String password){
         if(password.length()< PasswordLength) return false; //Checks length of password
-        System.out.println("Passed Length");
         if(conditionCheck(password, 2, 1, 1,2)) return true;
         return false;
     }
@@ -18,10 +17,16 @@ public class Password {
 
         for(int i = 0; i<password.length();i++){
             char active = password.charAt(i); //makes the current index char "active"
-            
-            if(numberCount<numberCondition && active >= '0' && active <= '9') numberCount++; //Checks if active is a number
-            if(lowerCount<lowerCondition && active >= 'a' && active <= 'z') lowerCount++; //Checks if active is a lowercase letter
-            if(upperCount<upperCondition && active >= 'A' && active <= 'Z') upperCount++; //Checks if active is an uppercase letter
+            if(!(active >= '0' && active <= '9') && !(active >= 'A' && active <= 'Z') && !(active >= 'a' && active <= 'z')) return false;
+            if(numberCount<numberCondition && active >= '0' && active <= '9'){
+                numberCount++; //Checks if active is a number
+            }
+            if(lowerCount<lowerCondition && active >= 'a' && active <= 'z'){
+                lowerCount++;
+            }  //Checks if active is a lowercase letter, needs to check for letter conndition
+            if(upperCount<upperCondition && active >= 'A' && active <= 'Z'){
+                upperCount++;
+            }  //Checks if active is an uppercase letter, needs to check for letter conndition
             if(numberCount>=numberCondition && lowerCount>=lowerCondition && upperCount>=upperCondition && upperCount+lowerCount >= letterCondition) return true; //combines upper- and lowercase to count letters. If all conditions are met, return true
         }
         return false;
