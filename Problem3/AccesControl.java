@@ -41,6 +41,7 @@ public class AccesControl {
     }
 
     public static void login() {
+        int tries = 0;
         boolean correct = false;
         while (!correct) {
             System.out.print("To logon enter username: ");
@@ -52,6 +53,10 @@ public class AccesControl {
             System.out.print("\nTo logon enter password: ");
             if (read.nextLine().equals(password))
                 correct = true;
+            else{
+                tries++;
+            }
+            if(tries == 3) System.exit(1);
         }
         System.out.println("\n*** User " + username + " is Logged on.");
     }
