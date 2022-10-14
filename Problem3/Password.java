@@ -18,15 +18,15 @@ public class Password {
         for(int i = 0; i<password.length();i++){
             char active = password.charAt(i); //makes the current index char "active"
             if(!(active >= '0' && active <= '9') && !(active >= 'A' && active <= 'Z') && !(active >= 'a' && active <= 'z')) return false;
-            if(numberCount<numberCondition && active >= '0' && active <= '9'){
-                numberCount++; //Checks if active is a number
+            if(numberCount<numberCondition && active >= '0' && active <= '9'){ //Checks if active is a number, skipped if number condition is met
+                numberCount++; 
             }
-            if(lowerCount<lowerCondition && active >= 'a' && active <= 'z'){
+            if(lowerCount<lowerCondition && active >= 'a' && active <= 'z'){//Checks if active is a lowercase letter, skipped if lower condition is met
                 lowerCount++;
-            }  //Checks if active is a lowercase letter, needs to check for letter conndition
-            if(upperCount<upperCondition && active >= 'A' && active <= 'Z'){
+            }  
+            if(upperCount<upperCondition && active >= 'A' && active <= 'Z'){//Checks if active is an uppercase letter, skipped if upper condition is met
                 upperCount++;
-            }  //Checks if active is an uppercase letter, needs to check for letter conndition
+            }  
             if(numberCount>=numberCondition && lowerCount>=lowerCondition && upperCount>=upperCondition && upperCount+lowerCount >= letterCondition) return true; //combines upper- and lowercase to count letters. If all conditions are met, return true
         }
         return false;
